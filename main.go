@@ -23,6 +23,13 @@ func main() {
 		fmt.Println("error", err.Error())
 	})
 
+	c.OnHTML(".text", func(element *colly.HTMLElement) {
+		fmt.Println("Quote", element.Text)
+	})
+	c.OnHTML(".author", func(element *colly.HTMLElement) {
+		fmt.Println("Author", element.Text)
+	})
+
 	err := c.Visit("http://quotes.toscrape.com/random")
 	if err != nil {
 		return
